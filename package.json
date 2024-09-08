@@ -1,24 +1,29 @@
 {
   "name": "adax-react",
   "version": "0.1.0",
-  "description": "adax adapter for react",
-  "repository": "https://github.com/MirjamElad/adax-react",
-  "author": "Mirjam Elad",
-  "license": "private for now",
-  "private": true,
-  "sideEffects": false,
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "description": "adax adapter for react",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MirjamElad/adax-react.git"
+  },
   "files": [
     "dist/**",
     "README.md",
     "LICENSE"
   ],
+  "author": "Mirjam Elad",
+  "license": "private for now",
+  "sideEffects": false,
   "scripts": {
     "build": "vite build & tsc",
-    "test": "jest"
+    "clean": "rimraf node_modules && rimraf dist && rimraf coverage",
+    "test": "jest",
+    "pack:local": "npm pack"
   },
+  "keywords": ["react state management"],
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@babel/preset-env": "^7.25.4",
