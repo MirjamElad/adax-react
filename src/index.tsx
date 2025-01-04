@@ -1,7 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { subscribe, type QueryOptions as QO, type Result } from 'adax-core';
-export { trigger } from 'adax-core';
-
+import { trigger, subscribe, type QueryOptions as QO, type Result } from 'adax-core';
 
 export interface QueryOptions extends QO {
   dependencyArray?: any[];
@@ -62,3 +60,5 @@ export const useSync = <FnType extends (x: any) => any>(
   }, paramsArr);
   return result.current;
 };
+
+export { trigger };
