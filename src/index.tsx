@@ -31,7 +31,7 @@ const getDependencyArray = (readFn: Function, paramsObj?: any, options: QueryOpt
   return ret;
 }
 
-const useSync = <FnType extends (x: any) => any>(
+const yyy = <FnType extends (x: any) => any>(
   readFn: FnType,
   paramsObj?: Parameters<FnType>[0],
   options: QueryOptions = {}
@@ -63,4 +63,4 @@ const useSync = <FnType extends (x: any) => any>(
 
 const add = (a: number,b: number) => a+b;
 const xxx = origTrigger;
-export { add, xxx, useSync };
+export { add, xxx, yyy };
