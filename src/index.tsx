@@ -63,4 +63,4 @@ const yyy = <FnType extends (x: any) => any>(
 
 const add = (a: number,b: number) => a+b;
 const xxx = origTrigger;
-export { add, xxx, yyy };
+export { add, xxx, yyy, origTrigger };
