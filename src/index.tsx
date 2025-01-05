@@ -61,6 +61,6 @@ const useSync = <FnType extends (x: any) => any>(
   return result.current;
 };
 
-const trigger = (a: number,b: number) => a+b;
-//const trigger = origTrigger;
-export { trigger, useSync };
+//const trigger = (a: number,b: number) => a+b;
+const xxx = origTrigger;
+export { xxx, useSync };
