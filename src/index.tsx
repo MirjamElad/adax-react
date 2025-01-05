@@ -52,7 +52,13 @@ export const useSync = <FnType extends (x: any) => any>(
     if (isCleanedUp.current) {
       //cleanedUp function called and this code line reached. 
       //  I.e. paramsArr dependency array changed! Thus we must re-initiate the results!
-      readTrigger({data: options?.skipInitalQuerying ? undefined : readFn(paramsObj), prevData: result.current ?? undefined, version: 0});
+      readTrigger({
+        data: options?.skipInitalQuerying ? undefined : readFn(paramsObj),
+        prevData: result.current ?? undefined,
+        version: 0,
+        writeFn: undefined,
+        writeParamsObj: undefined
+      });
     }
     return () => {
       isCleanedUp.current = true;
