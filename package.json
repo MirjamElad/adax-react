@@ -1,6 +1,6 @@
 {
   "name": "adax-react",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -23,15 +23,20 @@
     "test": "jest",
     "pack:local": "npm pack"
   },
-  "keywords": ["react state management"],
+  "keywords": [
+    "react state management"
+  ],
   "devDependencies": {
     "@babel/core": "^7.25.2",
-    "@babel/preset-env": "^7.25.4",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.26.3",
+    "@babel/preset-typescript": "^7.26.0",
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^26.0.24",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
+    "adax-core": "^0.2.0",
     "babel-jest": "^29.7.0",
     "eslint": "^7.32.0",
     "eslint-config-custom": "file:../eslint-config-custom",
@@ -48,7 +53,7 @@
   },
   "peerDependencies": {
     "adax-core": ">=0.2.0",
-    "react": ">=17.0.0",
-    "react-dom": ">=17.0.0"
+    "react": ">=16.8.0 <19.0.0",
+    "react-dom": ">=16.8.0 <19.0.0"
   }
 }

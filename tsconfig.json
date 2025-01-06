@@ -14,7 +14,10 @@
       "outDir": "dist",
       "moduleResolution": "node",
       "allowSyntheticDefaultImports": true,
-      "emitDeclarationOnly": true
+      "emitDeclarationOnly": true,
+      "paths": {
+        "adax-core/*": ["./node_modules/adax-core/dist/*"]
+      }
     },
     "exclude": ["node_modules"]
 }
