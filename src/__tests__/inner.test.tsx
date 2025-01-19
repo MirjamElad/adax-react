@@ -10,16 +10,16 @@ const sampleStore = ({
 const readFn = jest.fn(({name}:{name: 'alpha' | 'beta'}, stores = { sampleStore }) => sampleStore[name]);
 const readFn_2 = jest.fn(({name}:{name: 'alpha' | 'beta'}, stores = { sampleStore }) => sampleStore[name]);
 const mockedFunctions = {
-  my_onMounted: jest.fn(() => 'onMounted'),
-  my_onBeforeUnmount: jest.fn(() => 'onBeforeUnmount'),
+  my_on: jest.fn(() => 'on'),
+  my_off: jest.fn(() => 'off'),
 };
 
 jest.mock('adax-core', () => {
   return {
     __esModule: true,
     subscribe: jest.fn(() => ({
-      onMounted: mockedFunctions.my_onMounted,
-      onBeforeUnmount: mockedFunctions.my_onBeforeUnmount,
+      on: mockedFunctions.my_on,
+      off: mockedFunctions.my_off,
     })),
   };
 });
@@ -50,30 +50,30 @@ describe('adax-react interacts with adax as expected', () => {
   beforeEach(() => {
     readFn.mockClear();
     readFn_2.mockClear();
-    mockedFunctions.my_onMounted.mockClear();
-    mockedFunctions.my_onBeforeUnmount.mockClear();
+    mockedFunctions.my_on.mockClear();
+    mockedFunctions.my_off.mockClear();
   });
 
-  it('Component with useSync causes the invocation of onMounted when mounted', async () => {
+  it('Component with useSync causes the invocation of on when mounted', async () => {
     render(<MyApp/>);
-    expect(mockedFunctions.my_onMounted).toHaveBeenCalledTimes(1);
+    expect(mockedFunctions.my_on).toHaveBeenCalledTimes(1);
   });
 
-  it('Component with useSync causes the invocation of onBeforeUnmount when un-mounted', async () => {
+  it('Component with useSync causes the invocation of off when un-mounted', async () => {
     const { getByTestId } = render(<MyApp/>);
-    expect(mockedFunctions.my_onMounted).toHaveBeenCalledTimes(1);
+    expect(mockedFunctions.my_on).toHaveBeenCalledTimes(1);
     const hideShowToggle = getByTestId('hide-show-toggle');
     fireEvent.click(hideShowToggle);
-    expect(mockedFunctions.my_onBeforeUnmount).toHaveBeenCalledTimes(1);
+    expect(mockedFunctions.my_off).toHaveBeenCalledTimes(1);
   });
 
-  it('Component with useSync causes the invocation of onBeforeUnmount when useSync`s query`s arguments are updated', async () => {
+  it('Component with useSync causes the invocation of off when useSync`s query`s arguments are updated', async () => {
     const { getByTestId } = render(<MyApp/>);
-    expect(mockedFunctions.my_onMounted).toHaveBeenCalledTimes(1);
+    expect(mockedFunctions.my_on).toHaveBeenCalledTimes(1);
     const isAlphaToggle = getByTestId('isAlpha-toggle');
     fireEvent.click(isAlphaToggle);
-    expect(mockedFunctions.my_onBeforeUnmount).toHaveBeenCalledTimes(1);
-    expect(mockedFunctions.my_onMounted).toHaveBeenCalledTimes(2);    
+    expect(mockedFunctions.my_off).toHaveBeenCalledTimes(1);
+    expect(mockedFunctions.my_on).toHaveBeenCalledTimes(2);    
   });
 
   it('Component with useSync causes re-invocation of readFn when useSync`s query`s arguments are updated', async () => {
@@ -86,13 +86,13 @@ describe('adax-react interacts with adax as expected', () => {
   });
 
 
-  it('Component with useSync causes the invocation of onBeforeUnmount when useSync`s query is updated', async () => {
+  it('Component with useSync causes the invocation of off when useSync`s query is updated', async () => {
     const { getByTestId } = render(<MyApp/>);
-    expect(mockedFunctions.my_onMounted).toHaveBeenCalledTimes(1);
+    expect(mockedFunctions.my_on).toHaveBeenCalledTimes(1);
     const switchQueryToggle = getByTestId('switch-query-toggle');
     fireEvent.click(switchQueryToggle);
-    expect(mockedFunctions.my_onBeforeUnmount).toHaveBeenCalledTimes(1);
-    expect(mockedFunctions.my_onMounted).toHaveBeenCalledTimes(2);    
+    expect(mockedFunctions.my_off).toHaveBeenCalledTimes(1);
+    expect(mockedFunctions.my_on).toHaveBeenCalledTimes(2);    
   });
 
   it('Component with useSync causes invocation of a diff readFn when useSync`s query is updated', async () => {

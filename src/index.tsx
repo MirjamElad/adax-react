@@ -47,8 +47,8 @@ export const useSync = <FnType extends (x: any) => any>(
     forceUpdate((d) => d + 1);
   };
   useEffect(() => {
-    const { onMounted, onBeforeUnmount } = subscribe(readTrigger, readFn, paramsObj, {...options, skipInitalQuerying: true});
-    onMounted();
+    const { on, off } = subscribe(readTrigger, readFn, paramsObj, {...options, skipInitalQuerying: true});
+    on();
     if (isCleanedUp.current) {
       //cleanedUp function called and this code line reached. 
       //  I.e. paramsArr dependency array changed! Thus we must re-initiate the results!
@@ -62,7 +62,7 @@ export const useSync = <FnType extends (x: any) => any>(
     }
     return () => {
       isCleanedUp.current = true;
-      onBeforeUnmount();
+      off();
     };
     // eslint-disable-next-line 
   }, paramsArr);
