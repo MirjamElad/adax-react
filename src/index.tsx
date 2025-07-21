@@ -17,7 +17,7 @@ const getDependencyArray = (readFn: Function, paramsObj?: any, options: QueryOpt
   let ret: any[]= [readFn];
   Object.keys(paramsObj).sort().map((k) => {
     const argType = typeof paramsObj[k];
-    if (argType === 'string' || argType === 'number' || argType === 'boolean' || argType === 'symbol') {
+    if (!paramsObj[k] || argType === 'string' || argType === 'number' || argType === 'boolean' || argType === 'symbol') {
       ret.push(k+':'+paramsObj[k]);
     } else {
       try {
