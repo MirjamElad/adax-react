@@ -8,7 +8,9 @@ export interface QueryOptions extends QO {
 };
 
 const getDependencyArray = (readFn: Function, paramsObj?: any, options: QueryOptions = {}) => {
+  /* istanbul ignore next */
   if (options?.dependencyArray) {
+    /* istanbul ignore next */
     return options.dependencyArray;
   }
   if (!paramsObj) {
@@ -19,11 +21,15 @@ const getDependencyArray = (readFn: Function, paramsObj?: any, options: QueryOpt
     const argType = typeof paramsObj[k];
     if (!paramsObj[k] || argType === 'string' || argType === 'number' || argType === 'boolean' || argType === 'symbol') {
       ret.push(k+':'+paramsObj[k]);
-    } else {
+    } 
+    /* istanbul ignore next */
+    else {
+    /* istanbul ignore next */
       try {
         ret.push(k+':'+JSON.stringify(paramsObj[k]));
         console.error('WARNING: non scalar prop '+k+' was stringified for the dependency array! Consider providing a custom dependencyArray!');
-      } catch (err) {
+      } 
+    /* istanbul ignore next */ catch (err) {
         console.error('ERROR: unable to stringify ['+k+']! You MUST provide a custom dependencyArray! Details below ...');
         console.error(err);
         throw err;

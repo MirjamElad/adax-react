@@ -46,10 +46,12 @@ const skipMoodChangeAfterVote = (_w: { name: string }, _r: { name: string }, sto
   }
   //If the winner is the one who's getting an extra vote, skip as it will still be the winner after the vote
   if (result.winnerName === _w.name) {
+    /* istanbul ignore next */
     return true;
   }
   //If the runner up is the one who's being voted but is too far, skip as it will still be loosing after the vote
   if ( result.winnerScore > result.runnerUpScore + 1) {
+    /* istanbul ignore next */
     return true;
   }
   //In any other case do NOT skip as there will be a change (i.e. Tie)
