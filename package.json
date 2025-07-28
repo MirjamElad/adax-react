@@ -1,6 +1,6 @@
 {
   "name": "adax-react",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -51,7 +51,7 @@
     "vite": "^5.4.3"
   },
   "peerDependencies": {
-    "adax-core": ">=0.2.10",
+    "adax-core": ">=0.2.13",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
   }
