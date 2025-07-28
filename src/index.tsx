@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { subscribe, type QueryOptions as QO, type Result } from 'adax-core';
-export { trigger, addRule } from 'adax-core';
+export { trigger, addRule, removeRule } from 'adax-core';
 
 
 export interface QueryOptions extends QO {
